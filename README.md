@@ -13,7 +13,7 @@ Mini-program QR-code:
 
 The back-end code as well as the database structure will not be released currently because of some reasons.
 
-A file named "config.js" at this path is needed, the content can be this: 
+A file named "config.js" at this path is needed. The content can be this: 
 ```js
 var host = 'yourhost.com';
 
