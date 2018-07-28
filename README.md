@@ -1,7 +1,8 @@
 # weapp-ustb
 A wechat mini-program for Student Lecturer Group of SCCE, USTB
 
-**Attention: Just for the front-end.**
+**Attention: Just for the front-end only.**
+
 The back-end code as well as the database structure will not be released currently because of some reasons.
 
 A file named "config.js" at this path is needed, the content can be this: 
@@ -21,6 +22,6 @@ var config = {
 module.exports = config; 
 ```
 
-For more details, please read my [blog](https://lmy98129.github.io/2018/06/28/Notes-About-Recent-Projects-3/#more) (in Chinese).
+For more details, please read my [blog](https://lmy98129.github.io/2018/06/28/Notes-About-Recent-Projects-3/) (in Chinese).
 
 Thanks for every people who helped me during the development!
