@@ -1,0 +1,24 @@
+<!--template/tabbar.wxml-->
+<template name="tabbar">
+  <view class="tabbar-wrap">
+
+    <view class="tabbar-index" bindtap="tabbarRoute" data-index="0">
+      <image src="{{indexActive?'/images/index-hl.png':'/images/index.png'}}"></image>
+      <view style="color: {{indexActive?'#17abe3':'#bfbfbf'}}">
+        首页
+      </view>
+    </view>
+
+    <view class="tabbar-reserve">
+      <image src="/images/new-hl.png" bindtap="tabbarRoute" data-index="1" ></image>
+    </view>
+
+    <view class="tabbar-user" bindtap="tabbarRoute" data-index="2">
+      <image src="{{userpageActive?'/images/user-hl.png':'/images/user.png'}}"></image>
+      <view style="color: {{userpageActive?'#17abe3':'#bfbfbf'}}">
+        我的
+      </view>
+    </view>
+
+  </view>
+</template>

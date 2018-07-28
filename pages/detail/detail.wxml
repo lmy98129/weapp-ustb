@@ -1,0 +1,117 @@
+<!--pages/detail/detail.wxml-->
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+<block wx:if="{{contentMode == 1}}">
+  <view class="line">
+    <view class="title-wrap" bindtap="bindBack">
+      <view class="iconfont icon-fanhui back-button"></view>
+        <view class="title title-back" style='color:#499ef3'>
+            {{className}}
+        </view>
+    </view>
+  </view>
+  <view style="height: 100rpx"></view>
+    <view class="line">
+      <view class="demo">
+        时间：{{classDate}} {{classTimeStart}} - {{classTimeEnd}}
+      </view>
+  </view>
+  <view class="line">
+    <view class="demo">
+      地点：{{classPlace}}
+    </view>
+  </view>
+  <block wx:if="{{!isTeachMode}}">
+    <view class="line">
+      <view class="demo">
+        主讲讲师：{{teacherRealname}}
+      </view>
+    </view>
+  </block>
+  <view class="line">
+    <view class="demo">
+      预约人数：{{studentSum}} / {{studentLimit}}
+    </view>
+  </view>
+  <block wx:if="{{isTeachMode}}">
+    <view class="line">
+      <view class="demo">
+        提交时间：{{submissionDate}}
+      </view>
+    </view>
+  </block>
+  <view class="line">
+    <view class="demo detail-class-title">
+      课程简介：
+    </view>
+  </view>
+  <view class="line detail-class-intro-wrap">
+    <view class="demo detail-class-intro">
+      {{classIntro}}
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{contentMode==2}}">
+    <view class="line">
+      <view class="title-wrap" bindtap="bindBack">
+        <view class="iconfont icon-fanhui back-button"></view>
+          <view class="title title-back" style='color:#499ef3'>
+              {{courseName}}
+          </view>
+      </view>
+    </view>
+    <view style="height: 100rpx"></view>
+    <view class="line">
+      <view class="demo">
+        时间：{{courseDate}} {{courseTimeStart}} - {{courseTimeEnd}}
+      </view>
+    </view>
+    <view class="line">
+      <view class="demo">
+        地点：{{coursePlace}}
+      </view>
+    </view>
+    <block wx:if="{{!isTeachMode}}">
+        <block wx:if="{{isTeacherTakeOrder}}">
+          <view class="line">
+            <view class="demo">
+              接单讲师：{{teacherRealname}}
+            </view>
+          </view>
+          <view class="line">
+            <view class="demo">
+              讲师电话：{{teacherTelenum}}
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="line">
+            <view class="demo">
+              暂无讲师接单
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:if="{{isTeachMode}}">
+          <view class="line">
+            <view class="demo">
+              预约人：{{userNickname}}
+            </view>
+          </view>
+      </block>
+      <view class="line">
+        <view class="demo">
+          提交时间：{{submissionDate}}
+        </view>
+      </view>
+    <view class="line">
+      <view class="demo detail-class-title">
+        预约备注：
+      </view>
+    </view>
+    <view class="line detail-class-intro-wrap">
+      <view class="demo detail-class-intro">
+        {{courseIntro}}
+      </view>
+    </view>
+  </block>
+</view>

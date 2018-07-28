@@ -1,0 +1,39 @@
+/* pages/user/user.wxss */
+@import "../index/index.wxss";
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50rpx;
+  overflow: hidden;
+}
+
+.avatar-img{
+  width: 140rpx;
+  height: 140rpx;
+  margin:50rpx auto 30rpx;
+  background-color: #bfbfbf;
+  border-radius: 50%;
+  z-index: 99;
+  border: 2px solid #fff;
+  transform: translateZ(100rpx)
+}
+
+.userinfo-nickname {
+  margin:10rpx auto 45rpx;
+  font-size: 40rpx;
+  z-index: 99;
+  color: #fff;
+  font-weight: bold;
+}
+
+.colored-top {
+  position: fixed;
+  top: 0;
+  left: -35rpx;
+  width: 300%;
+  background-color: #17abe3;
+  height: 40%;
+  z-index: 0;
+  transform: rotate(8deg);
+}

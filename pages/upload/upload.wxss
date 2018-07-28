@@ -1,0 +1,67 @@
+/* pages/upload/upload.wxss */
+@import "../index/index.wxss";
+
+.note{
+    width: 100%;
+    text-align: center;
+    color: #6D6D72;
+    font-size: 28rpx;
+}
+
+ .line .class-intro{
+    width: 92%;
+    line-height:40rpx;
+    text-align:left;
+    color:#333;
+    background-color:#fff;
+    position:relative;
+    font-size:40rpx!important;
+    padding-left:40rpx;
+    padding-right:18rpx; 
+    padding-bottom: 40rpx;
+    border-bottom-right-radius:17rpx;
+    border-bottom-left-radius:17rpx;
+ }
+
+ .class-intro-title{
+    color: #333;
+    border-bottom-right-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+ }
+ .class-intro-wrap{
+    padding-top: 0!important;
+    border-bottom-right-radius: 17rpx;
+    border-bottom-left-radius: 17rpx;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ .form-button{
+    margin-bottom: 40rpx;
+ }
+
+ .student-limit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #fff;
+    padding-top: 0!important;
+    margin-top: 20rpx;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 17rpx;
+ }
+
+ .student-limit-title{
+   padding-right: 0!important;
+   flex:0 1 45%;
+ }
+
+ .student-limit-input{
+    width: 70%;
+    padding-left: 0!important;    
+ }

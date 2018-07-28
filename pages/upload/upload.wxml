@@ -1,0 +1,117 @@
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+<block wx:if="{{contentMode == 1}}">
+  <view class="line">
+    <view class="title-wrap" bindtap="bindBack">
+      <view class="iconfont icon-fanhui back-button"></view>
+        <view class="title title-back">
+            编辑课程
+        </view>
+    </view>
+  </view>
+    <view style="height: 100rpx"></view>
+    <view class="line">
+      <view class="note"> 请点击下列各项填写，地点、简介、人数上限为选填项 </view> 
+        <input bindinput="bindClassName" value="{{className}}" placeholder="请输入课程名称" class="demo"></input>
+    </view>
+    <view class="line">
+        <input bindinput="bindClassPlace" value="{{classPlace}}" placeholder="请输入课程地点" class="demo"></input>
+    </view>
+    <view class="line student-limit">
+        <view class="demo student-limit-title">人数上限：</view>
+        <input bindinput="bindStudentLimit" value="{{studentLimit}}" placeholder="当前无上限（输入数字）" class="demo student-limit-input"></input>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="date" bindchange="bindDatePickerChange" value="{{dateIndex}}" start="{{dateLimitStart}}" end="{{dateLimitEnd}}">
+          选择日期：{{dateIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="time" bindchange="bindTimeStartPickerChange" value="{{timeStartIndex}}" start="06:00" end="23:00">
+          选择开始时间：{{timeStartIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="time" bindchange="bindTimeEndPickerChange" value="{{timeEndIndex}}" start="06:00" end="23:00">
+          选择结束时间：{{timeEndIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+        <view class="demo class-intro-title">
+          请在下方输入课程简介：
+        </view>
+    </view>
+    <view class="line class-intro-wrap">
+        <textarea bindinput="bindClassIntro" value="{{classIntro}}" maxlength="400" class="class-intro" auto-height="true"></textarea>
+    </view>
+    <view class="line form-button">
+      <view bindtap="uploadSelectedData" class="demo" style="color: #499ef3">
+        填写完成，点我提交课程信息
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{contentMode == 2}}">
+    <view class="line">
+    <view class="title-wrap" bindtap="bindBack">
+      <view class="iconfont icon-fanhui back-button"></view>
+        <view class="title title-back">
+            编辑预约
+        </view>
+    </view>
+  </view>
+    <view style="height: 100rpx"></view>
+      <view class="line" style="padding-top: 10rpx">
+          <view class="note"> 请点击下列各项填写，地点、备注为选填项 </view> 
+            <input bindinput="bindCourseName" value="{{courseName}}" placeholder="请输入辅导科目名称" class="demo"></input>
+        </view>
+        <view class="line">
+            <input bindinput="bindCoursePlace" value="{{coursePlace}}" placeholder="请输入你期望的辅导地点" class="demo"></input>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="date" bindchange="bindDatePickerChange" value="{{dateIndex}}" start="{{dateLimitStart}}" end="{{dateLimitEnd}}">
+              选择你期望的辅导日期：{{dateIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="time" bindchange="bindTimeStartPickerChange" value="{{timeStartIndex}}" start="06:00" end="23:00">
+              选择开始时间：{{timeStartIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="time" bindchange="bindTimeEndPickerChange" value="{{timeEndIndex}}" start="06:00" end="23:00">
+              选择结束时间：{{timeEndIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+            <view class="demo class-intro-title">
+              请在下方输入你的辅导需求备注：
+            </view>
+        </view>
+        <view class="line class-intro-wrap">
+            <textarea bindinput="bindCourseIntro" value="{{courseIntro}}" maxlength="400" class="class-intro" auto-height="true" style="font-weight: lighter"></textarea>
+        </view>
+        <view class="line form-button">
+          <view bindtap="uploadSelectedData" class="demo" style="color: #499ef3">
+            填写完成，点我提交课程信息
+          </view>
+          <view class="line">
+            <view class="note">注：提交后，讲师团成员将会以接单的形式接受你的预约</view> 
+          </view>
+          <view class="line">
+            <view class="note">请通过讲师团小程序规范提交辅导预约需求，</view> 
+            <view class="note">讲师团将有权删除违法违规信息，感谢你的理解与配合</view> 
+          </view>
+        </view>
+  </block>
+</view>

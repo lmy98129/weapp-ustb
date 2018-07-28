@@ -1,0 +1,28 @@
+<!--pages/user/user.wxml-->
+<import src="/template/tabbar" />
+<view class="colored-top"></view>
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+  <view class="userinfo">
+      <image src="{{avatarUrl}}" class="avatar-img"></image>
+      <open-data class="userinfo-nickname" type="userNickName"></open-data>
+  </view>
+  <view class="line">
+      <view class="demo" bindtap="goAuthPage">
+          讲师认证申请
+            <view class="link">></view>
+      </view>
+  </view>
+  <view class="line">
+      <view class="demo">
+          消息通知
+            <view class="link">绝赞开发中，敬请期待</view>
+      </view>
+  </view>
+  <view class="line" style="margin-top: 60rpx">
+      <view class="demo" bindtap="goAboutPage">
+          关于
+            <view class="link">></view>
+      </view>
+  </view>
+  <template is="tabbar" data="{{...tabStatus}}"></template>
+</view>

@@ -1,0 +1,271 @@
+<!-- pages/list/list.wxml -->
+<view class="sysbar-hider {{isIpx?'sysbar-hider-ipx':''}} {{isIp4?'sysbar-hider-ip4':''}}"></view>
+<block wx:if="{{!isTeachMode}}">
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+    <view class="line">
+      <view class="title-wrap">
+        <view class="iconfont icon-fanhui back-button" bindtap="bindBack"></view>
+          <view class="title title-back" bindtap="bindBack">
+              创建预约
+          </view>
+          <view class="iconfont icon-msnui-refresh-line refresh-button {{refreshStatus?'active':''}}" bindtap="bindRefresh"></view>
+      </view>
+    </view>
+    <view class="navbar">
+      <text wx:for="{{navArrayStu}}" data-index="{{index}}" class="item {{currentNavTab==index?'active':''}}" wx:key="unique" bindtap="bindNavbarTap">
+      {{item}}
+      </text>
+    </view>
+    <view style="padding-bottom: 220rpx"></view>
+    <block wx:if="{{currentNavTab == 0}}">
+      <block wx:for="{{classArray}}" wx:key="{{id}}">
+        <view class="line">
+        <view class="class-bar-wrap">
+          <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+            <view class="item-header">
+              <view class="demo-1" style='color:#499ef3'>
+                  {{item.class_name}}
+              </view>  
+            </view>
+            <view class="demo-2 demo-3">
+              <view wx:if="{{item.status == 0}}">
+                  已取消
+              </view>
+              <view wx:if="{{item.status == 1}}">
+                  {{item.class_place}}  主讲：{{item.teacher_realname}}
+              </view> 
+            </view>
+            <view class="demo-2" wx:if="{{item.status == 1}}">
+              <view>
+                {{item.class_date}} {{item.class_timestart}} - {{item.class_timend}}
+              </view>
+            </view>
+          </view>
+          <view class="button-wrap">
+          <block wx:if="{{item.overtime == 1}}">
+          <view class="reserve-button" data-content='{{item}}'>
+               已过期
+          </view>
+          </block>
+          <block wx:elif="{{item.student_sum >= item.student_limit && item.student_limit > 0}}">
+            <view class="reserve-button" data-content='{{item}}'>
+              人数已满
+            </view>
+          </block>
+            <block wx:elif="{{item.status == 0}}">
+            <view class="reserve-button" data-content='{{item}}'>
+              已取消
+            </view>
+            </block>
+            <block wx:elif="{{item.reserve_status == null || item.reserve_status != 1}}">
+            <view class="reserve-button" bindtap="bindReserve" data-content='{{item}}'>
+              预约
+            </view>
+            </block>
+            <block wx:elif="{{item.reserve_status == 1}}">
+            <view class="reserve-button" bindtap="bindCancelReserve" data-content='{{item}}'>          
+              取消预约
+            </view>
+            </block>
+            <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+              详情
+            </view>
+          </view>
+        </view>
+        </view>
+        </block>
+        <block wx:if="{{isEmptyContent}}">
+          <view class="empty-note">
+                {{emptyNote}}
+          </view>
+        </block>
+        <view class="tabbar-holder" style="height: 100rpx"></view>
+      </block>
+      <block wx:if="{{currentNavTab == 1}}">
+          <view class="line" style="padding-top: 10rpx">
+          <view class="note"> 请点击下列各项填写，地点、备注为选填项 </view> 
+            <input bindinput="bindCourseName" value="{{courseName}}" placeholder="请输入辅导科目名称" class="demo"></input>
+        </view>
+        <view class="line">
+            <input bindinput="bindCoursePlace" value="{{coursePlace}}" placeholder="请输入你期望的辅导地点" class="demo"></input>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="date" bindchange="bindDatePickerChange" value="{{dateIndex}}" start="{{dateLimitStart}}" end="{{dateLimitEnd}}">
+              选择你期望的辅导日期：{{dateIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="time" bindchange="bindTimeStartPickerChange" value="{{timeStartIndex}}" start="06:00" end="23:00">
+              选择开始时间：{{timeStartIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+          <view class="demo">
+            <picker mode="time" bindchange="bindTimeEndPickerChange" value="{{timeEndIndex}}" start="06:00" end="23:00">
+              选择结束时间：{{timeEndIndex}}
+            </picker>
+          </view>
+        </view>
+        <view class="line">
+            <view class="demo class-intro-title">
+              请在下方输入你的辅导需求备注：
+            </view>
+        </view>
+        <view class="line class-intro-wrap">
+            <textarea bindinput="bindCourseIntro" value="{{courseIntro}}" maxlength="400" class="class-intro" auto-height="true" style="font-weight: lighter"></textarea>
+        </view>
+        <view class="line form-button">
+          <view bindtap="uploadSelectedData" class="demo" style="color: #499ef3">
+            填写完成，点我提交课程信息
+          </view>
+          <view class="line">
+            <view class="note">注：提交后，讲师团成员将会以接单的形式接受你的预约</view> 
+          </view>
+          <view class="line">
+            <view class="note">请通过讲师团小程序规范提交辅导预约需求，</view> 
+            <view class="note">讲师团将有权删除违法违规信息，感谢你的理解与配合</view> 
+          </view>
+        </view>
+      </block>
+</view>
+</block>
+<block wx:if="{{isTeachMode}}">
+  <view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+    <view class="line">
+      <view class="title-wrap">
+        <view class="iconfont icon-fanhui back-button" bindtap="bindBack"></view>
+          <view class="title title-back" bindtap="bindBack">
+              创建课程/辅导
+          </view>
+          <view class="iconfont icon-msnui-refresh-line refresh-button {{refreshStatus?'active':''}}" bindtap="bindRefresh"></view>
+      </view>
+    </view>
+    <view class="navbar">
+      <text wx:for="{{navArrayTeach}}" data-index="{{index}}" class="item {{currentNavTab==index?'active':''}}" wx:key="unique" bindtap="bindNavbarTap">
+      {{item}}
+      </text>
+    </view>
+    <view style="padding-bottom: 220rpx"></view>
+    <block wx:if="{{currentNavTab == 1}}">
+          <view class="line">
+      <view class="note"> 请点击下列各项填写，地点、简介、人数上限为选填项 </view> 
+        <input bindinput="bindClassName" value="{{className}}" placeholder="请输入课程名称" class="demo"></input>
+    </view>
+    <view class="line">
+        <input bindinput="bindClassPlace" value="{{classPlace}}" placeholder="请输入课程地点" class="demo"></input>
+    </view>
+    <view class="line student-limit">
+        <view class="demo student-limit-title">人数上限：</view>
+        <input bindinput="bindStudentLimit" value="{{studentLimit}}" placeholder="当前无上限（输入数字）" class="demo student-limit-input"></input>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="date" bindchange="bindDatePickerChange" value="{{dateIndex}}" start="{{dateLimitStart}}" end="{{dateLimitEnd}}">
+          选择日期：{{dateIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="time" bindchange="bindTimeStartPickerChange" value="{{timeStartIndex}}" start="06:00" end="23:00">
+          选择开始时间：{{timeStartIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+      <view class="demo">
+        <picker mode="time" bindchange="bindTimeEndPickerChange" value="{{timeEndIndex}}" start="06:00" end="23:00">
+          选择结束时间：{{timeEndIndex}}
+        </picker>
+      </view>
+    </view>
+    <view class="line">
+        <view class="demo class-intro-title">
+          请在下方输入课程简介：
+        </view>
+    </view>
+    <view class="line class-intro-wrap">
+        <textarea bindinput="bindClassIntro" value="{{classIntro}}" maxlength="400" class="class-intro" auto-height="true"></textarea>
+    </view>
+    <view class="line form-button">
+      <view bindtap="uploadSelectedData" class="demo" style="color: #499ef3">
+        填写完成，点我提交课程信息
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{currentNavTab == 0}}">
+      <block wx:for="{{classArray}}" wx:key="{{id}}">
+        <view class="line">
+        <view class="class-bar-wrap">
+          <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='require'>
+            <view class="item-header">
+              <view class="demo-1" style='color:#499ef3'>
+                  {{item.course_name}}
+              </view>  
+            </view>
+            <view class="demo-2 demo-3">
+              <view wx:if="{{item.status == 0}}">
+                  已取消
+              </view>
+              <view wx:if="{{item.status == 1}}">
+                  {{item.course_place}}  预约人：{{item.user_nickname}}
+              </view> 
+            </view>
+            <view class="demo-2" wx:if="{{item.status == 1}}">
+              <view>
+                {{item.course_date}} {{item.course_timestart}} - {{item.course_timend}}
+              </view>
+            </view>
+          </view>
+          <view class="button-wrap">
+          <block wx:if="{{item.overtime == 1}}">
+          <view class="reserve-button" data-content='{{item}}'>
+               已过期
+          </view>
+          </block>
+          <block wx:elif="{{item.student_sum >= item.student_limit && item.student_limit > 0}}">
+            <view class="reserve-button" data-content='{{item}}'>
+              人数已满
+            </view>
+            </block>
+            <block wx:elif="{{item.status == 0}}">
+            <view class="reserve-button" data-content='{{item}}'>
+              已取消
+            </view>
+            </block>
+            <block wx:elif="{{item.takeorder_status == null || item.takeorder_status != 1}}">
+            <view class="reserve-button" bindtap="bindTakeOrder" data-content='{{item}}'>
+              预约
+            </view>
+            </block>
+            <block wx:elif="{{item.takeorder_status == 1 && item.teacher_nickname != nickName}}">
+            <view class="reserve-button" bindtap="bindCancelOrder" data-content='{{item}}'> 
+              已被预约
+            </view>
+            </block>
+            <block wx:elif="{{item.takeorder_status == 1 && item.teacher_nickname == nickName}}">
+            <view class="reserve-button" bindtap="bindCancelOrder" data-content='{{item}}'>  
+              取消预约
+            </view>
+            </block>
+            <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type='require'>
+              详情
+            </view>
+          </view>
+        </view>
+        </view>
+        </block>
+        <block wx:if="{{isEmptyContent}}">
+          <view class="empty-note">
+                {{emptyNote}}
+          </view>
+        </block>
+        <view class="tabbar-holder" style="height: 100rpx"></view>
+  </block>
+  </view>
+</block>
+

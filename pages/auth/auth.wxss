@@ -1,0 +1,59 @@
+  /* pages/auth/auth.wxss  */
+@import "../upload/upload.wxss";
+
+.note{
+    width: 100%;
+    text-align: center;
+    color: #6D6D72;
+    font-size: 28rpx;
+}
+
+ .line .class-intro{
+    width: 90%;
+    line-height:40rpx;
+    text-align:left;
+    color:#333;
+    background-color:#fff;
+    position:relative;
+    font-size:40rpx!important;
+    padding-left:40rpx;
+    padding-right:40rpx; 
+    padding-bottom: 40rpx;
+ }
+
+ .class-intro-title{
+    color: #333;
+ }
+ .class-intro-wrap{
+    padding-top: 0!important;
+ }
+
+ .form-button{
+    margin-bottom: 40rpx;
+ }
+
+ .student-limit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fff;
+    padding-top: 0!important;
+    margin-top: 20rpx;
+ }
+
+ .student-limit-title{
+   padding-right: 0!important;
+ }
+
+ .student-limit-input{
+    width: 70%;
+    padding-left: 0!important;    
+ }
+
+ .message{
+    width: 100%;
+    text-align: center;
+    margin-top: 40rpx;
+    color: #6D6D72;
+    font-size: 30rpx;
+ } 

@@ -1,0 +1,32 @@
+<!--pages/about/about.wxml-->
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+  <view class="line">
+    <view class="title-wrap" bindtap="bindBack">
+      <view class="iconfont icon-fanhui back-button"></view>
+        <view class="title title-back">
+            关于
+        </view>
+    </view>
+  </view>
+  <view style="height: 120rpx"></view>
+  <view class="userinfo">
+      <image src="/images/logo.jpeg" class="avatar-img"></image>
+      <view class="userinfo-nickname">贝壳计通讲师团</view>
+  </view>
+  <view class="line">
+    <view class="demo">
+      小程序版本：v0.4.1
+    </view>
+  </view>
+  <view class="line">
+    <view class="demo demo-1">
+      开发人员：@lmy98129 @fafnir
+    </view>
+  </view>
+  <view class="note">
+      北京科技大学计算机与通信工程学院
+  </view>
+  <view class="note note-2">
+      学生讲师团 荣誉出品
+  </view>
+</view>

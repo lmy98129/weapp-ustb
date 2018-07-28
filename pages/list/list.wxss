@@ -1,0 +1,8 @@
+/* pages/list/list.wxss */
+@import "../index/index.wxss";
+@import "../upload/upload.wxss";
+
+.empty-note {
+  text-align: center;
+}
+

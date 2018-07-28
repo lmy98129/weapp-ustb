@@ -1,0 +1,244 @@
+<import src="/template/tabbar" />
+<view class="sysbar-hider {{isIpx?'sysbar-hider-ipx':''}} {{isIp4?'sysbar-hider-ip4':''}}"></view>
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+  <block wx:if="{{!hasUserInfo}}" >
+    <view class="auth-page">
+      <view class="auth-page-note">
+        <image src="/images/logo.jpeg"></image>
+        <text>请允许微信授权登录后\n继续使用小程序</text>
+      </view>
+      <view class="auth-page-button">
+        <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+          授权登录
+        </button>
+        <view class="auth-page-uncomp-note" wx:else>不支持授权登录，请升级微信版本</view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="line">
+      <view class="title-wrap">
+          <view class="title">
+              贝壳计通讲师团
+          </view>
+          <view class="iconfont icon-msnui-refresh-line refresh-button {{refreshStatus?'active':''}}" bindtap="bindRefresh"></view>
+      </view>
+    </view>
+    <block wx:if="{{isTeachMode == 1}}">
+    <view class="navbar">
+      <text wx:for="{{navArrayStu}}" data-index="{{index}}" class="item {{currentNavTab==index?'active':''}}" wx:key="unique" bindtap="bindNavbarTap">
+      {{item}}
+      </text>
+    </view>
+      <view style="padding-bottom: 220rpx"></view>
+      <block wx:if="{{currentNavTab==0}}">
+        <block wx:for="{{reserveArray}}" wx:key="{{id}}">
+          <view class="line">
+            <view class="class-bar-wrap">
+              <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+                <view class="item-header">
+                  <view class="demo-1" style='color:#499ef3'>
+                      {{item.class_name}}
+                  </view>  
+                </view>
+                <view class="demo-2 demo-3">
+                  <view wx:if="{{item.overtime == 1}}">
+                      课程已过期
+                  </view>
+                  <view wx:elif="{{item.status == 0 || item.status == 2}}">
+                      已取消
+                  </view>
+                  <view wx:elif="{{item.status == 1}}">
+                      {{item.class_place}}  主讲：{{item.teacher_realname}}
+                  </view> 
+                </view>
+                <view class="demo-2">
+                  <view>
+                    {{item.class_date}} {{item.class_timestart}} - {{item.class_timend}}
+                  </view>
+                </view>
+              </view>
+              <view class="button-wrap">
+                <view class="reserve-button" bindtap="bindCancelReserve" data-content='{{item}}'>          
+                  取消预约
+                </view>
+                <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+                  详情
+                </view>
+              </view>
+            </view>
+          </view>
+          </block>
+          <block wx:if="{{isEmptyClassContent}}">
+            <image src="/images/reserve-hl.png" class="empty-icon"></image>
+            <view class="empty-note">
+                  <block wx:if="{{emptyClassUserName == false && isTeachMode == 1}}">
+                    <open-data type="userNickName"></open-data> 
+                  </block>
+                    {{emptyClassNote}}
+            </view>
+            <view class="empty-intro">
+                  {{emptyClassIntro}}
+            </view>
+          </block>
+        </block>
+        <block wx:if="{{currentNavTab==1}}">
+          <block wx:for="{{courseArray}}" wx:key="{{id}}">
+            <view class="line">
+              <view class="class-bar-wrap">
+                <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='require'>
+                  <view class="item-header">
+                    <view class="demo-1" style='color:#499ef3'>
+                        {{item.course_name}}
+                    </view>  
+                  </view>
+                  <view class="demo-2 demo-3">
+                  <view wx:if="{{item.overtime == 1 && item.teacher_realname == null}}">
+                      辅导已过期
+                  </view>
+                    <view wx:elif="{{item.status == 0}}">
+                        已取消
+                    </view>
+                    <view wx:elif="{{item.status == 1}}">
+                        {{item.course_place}}  <block wx:if="{{item.teacher_realname == null}}">暂无讲师接单</block><block wx:else>接单讲师：{{item.teacher_realname}}</block>
+                    </view> 
+                  </view>
+                  <view class="demo-2">
+                    <view>
+                      {{item.course_date}} {{item.course_timestart}} - {{item.course_timend}}
+                    </view>
+                  </view>
+                </view>
+                <view class="button-wrap">
+                <view class="reserve-button" bindtap="actionSheetRequire" data-content='{{item}}' data-type='require'>          
+                  设置
+                </view>
+                  <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type="require">
+                    详情
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{isEmptyCourseContent}}">
+          <image src="/images/reserve-hl.png" class="empty-icon"></image>
+            <view class="empty-note">
+                  <block wx:if="{{emptyCourseUserName == false && isTeachMode == 1}}">
+                    <open-data type="userNickName"></open-data> 
+                  </block>
+                    {{emptyCourseNote}}
+            </view>
+            <view class="empty-intro">
+                  {{emptyCourseIntro}}
+            </view>
+          </block>
+        </block>
+      </block>
+      <block wx:if="{{isTeachMode == 2}}">
+    <view class="navbar">
+      <text wx:for="{{navArrayTeach}}" data-index="{{index}}" class="item {{currentNavTab==index?'active':''}}" wx:key="unique" bindtap="bindNavbarTap">
+      {{item}}
+      </text>
+    </view>
+          <view style="padding-bottom: 220rpx"></view>
+        <block wx:if="{{currentNavTab==0}}">
+          <block wx:for="{{classArray}}" wx:key="{{id}}">
+            <view class="line">
+              <view class="class-bar-wrap">
+                <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+                  <view class="item-header">
+                    <view class="demo-1" style='color:#499ef3'>
+                        {{item.class_name}}
+                    </view>  
+                  </view>
+                  <view class="demo-2 demo-3">
+                    <view wx:if="{{item.status == 0}}">
+                        已取消
+                    </view>
+                    <view wx:elif="{{item.status == 1}}">
+                        {{item.class_place}}  主讲：{{item.teacher_realname}}
+                    </view> 
+                  </view>
+                  <view class="demo-2">
+                    <view>
+                      {{item.class_date}} {{item.class_timestart}} - {{item.class_timend}}
+                    </view>
+                  </view>
+                </view>
+                <view class="button-wrap">
+                  <view class="reserve-button" bindtap="actionSheet" data-content='{{item}}' data-type='class'>          
+                    设置
+                  </view>
+                  <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type='class'>
+                    详情
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+            <block wx:if="{{isEmptyClassContent}}">
+            <image src="/images/reserve-hl.png" class="empty-icon"></image>
+              <view class="empty-note">
+                    <block wx:if="{{emptyClassUserName == false && isTeachMode == 1}}">
+                      <open-data type="userNickName"></open-data> 
+                    </block>
+                      {{emptyClassNote}}
+              </view>
+              <view class="empty-intro">
+                    {{emptyClassIntro}}
+              </view>
+            </block>
+          </block>
+          <block wx:if="{{currentNavTab==1}}">
+          <block wx:for="{{takenOrderArray}}" wx:key="{{id}}">
+          <view class="line">
+            <view class="class-bar-wrap">
+              <view class="info-wrap" bindtap="goDetailPage" data-content='{{item}}' data-type='require'>
+                <view class="item-header">
+                  <view class="demo-1" style='color:#499ef3'>
+                      {{item.course_name}}
+                  </view>  
+                </view>
+                <view class="demo-2 demo-3">
+                  <view wx:if="{{item.status == 0 || item.status == 2}}">
+                      已取消
+                  </view>
+                  <view wx:elif="{{item.status == 1}}">
+                      {{item.course_place}}  预约人：{{item.user_nickname}}
+                  </view> 
+                </view>
+                <view class="demo-2">
+                  <view>
+                    {{item.course_date}} {{item.course_timestart}} - {{item.course_timend}}
+                  </view>
+                </view>
+              </view>
+              <view class="button-wrap">
+                <view class="reserve-button" bindtap="bindCancelOrder" data-content='{{item}}'>          
+                  取消预约
+                </view>
+                <view class="detail-button" bindtap="goDetailPage" data-content='{{item}}' data-type='require'>
+                  详情
+                </view>
+              </view>
+            </view>
+          </view>
+          </block>
+            <block wx:if="{{isEmptyCourseContent}}">
+            <image src="/images/reserve-hl.png" class="empty-icon"></image>
+              <view class="empty-note">
+                    <block wx:if="{{emptyCourseUserName == false && isTeachMode == 1}}">
+                      <open-data type="userNickName"></open-data> 
+                    </block>
+                      {{emptyCourseNote}}
+              </view>
+              <view class="empty-intro good">
+                    {{emptyCourseIntro}}
+              </view>
+            </block>
+          </block>
+      </block>
+      <view class="tabbar-holder"></view>
+    <template is="tabbar" data="{{...tabStatus}}"></template>
+  </block>
+</view>

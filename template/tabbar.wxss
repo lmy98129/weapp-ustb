@@ -1,0 +1,49 @@
+/* template/tabbar.wxss */
+
+.tabbar-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  position: fixed;
+  height: 90rpx;
+  bottom: 0;
+  padding-top: 20rpx;
+  padding-bottom: 35rpx;
+  border-top: .5px solid #cccccc;
+  background-color: rgba(256,256,256,0.9);
+}
+
+.tabbar-wrap view {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.tabbar-wrap .tabbar-reserve {
+  position:fixed;
+  bottom:30rpx;
+}
+
+.tabbar-wrap view image {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 auto;
+}
+
+.tabbar-wrap .tabbar-reserve image{
+  width: 115rpx;
+  height: 115rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;  
+  border-radius: 50%;
+}
+
+.tabbar-wrap view view {
+  font-size: 25rpx;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rpx;
+  font-weight: bold;
+}

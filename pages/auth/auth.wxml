@@ -1,0 +1,35 @@
+<view class="root {{isIpx?'root-ipx':''}} {{isIp4?'root-ip4':''}}">
+  <view class="line">
+    <view class="title-wrap" bindtap="bindBack">
+      <view class="iconfont icon-fanhui back-button"></view>
+        <view class="title title-back">
+            讲师认证申请
+        </view>
+    </view>
+  </view>
+  <view style="height: 100rpx"></view>
+  <block wx:if="{{isTeachMode == 0}}">
+  <view class="line">
+      <view class="note"> 请点击下列各项填写，以便管理员核对您的身份 </view> 
+      <input bindinput="bindRealName" placeholder="请输入您的真实姓名" class="demo"></input>
+  </view>
+  <view class="line">
+      <input bindinput="bindPhoneNumber" placeholder="请输入您的手机号" class="demo"></input>
+  </view>
+  <view class="line form-button">
+    <view bindtap="uploadAuthData" class="demo" style="color: #499ef3">
+      填写完成，点我提交认证申请
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{isTeachMode == 1}}">
+   <view class="message">
+      你已经认证过了
+   </view> 
+  </block>
+  <block wx:if="{{isTeachMode == -1}}">
+  <view class="message">
+    认证正在审核，请联系管理员
+  </view>
+  </block>
+</view>
