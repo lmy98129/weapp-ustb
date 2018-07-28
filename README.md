@@ -1,6 +1,8 @@
 # weapp-ustb
 A wechat mini-program for Student Lecturer Group of SCCE, USTB
 
+![intro](https://github.com/lmy98129/weapp-ustb/WEAPP1.png)
+
 **Attention: Just for the front-end only.**
 
 The back-end code as well as the database structure will not be released currently because of some reasons.
