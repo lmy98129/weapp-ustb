@@ -1,11 +1,13 @@
 # weapp-ustb
 
 <div align=center><img src="https://github.com/lmy98129/weapp-ustb/raw/master/WEAPP1.PNG"/></div>
+<br/>
 
 A wechat mini-program for Student Lecturer Group of SCCE, USTB
 
 Mini-program QR-code: 
 <div align=center><img src="https://github.com/lmy98129/weapp-ustb/raw/master/QRCODE.jpg"/></div>
+<br/>
 
 **Attention: Just for the front-end only.**
 
