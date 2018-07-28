@@ -26,5 +26,5 @@ module.exports = config;
 
 For more details, please read my [blog](https://lmy98129.github.io/2018/06/28/Notes-About-Recent-Projects-3/) (in Chinese).
 
-Thanks for every people who helped me during the development! <br/>
+Thanks to every people who helped me during the development! <br/>
 Special Thanks to [@Fafnir](https://github.com/yuncheng1998) and [@Gao Yifei](https://github.com/jasongao97). 
