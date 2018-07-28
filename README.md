@@ -1,7 +1,7 @@
 # weapp-ustb
 A wechat mini-program for Student Lecturer Group of SCCE, USTB
 
-![intro](https://github.com/lmy98129/weapp-ustb/raw/master/WEAPP1.PNG)
+<div align=center>![intro](https://github.com/lmy98129/weapp-ustb/raw/master/WEAPP1.PNG)
 
 **Attention: Just for the front-end only.**
 
