@@ -155,10 +155,12 @@
   color: #6d6d72;
   animation: spin 800ms infinite linear;  
   animation-play-state: paused;
+  -webkit-animation-play-state: paused;
 }
 
 .line .title-wrap .refresh-button.active {
   animation-play-state: running;
+  -webkit-animation-play-state: running;
 }
 
 @keyframes spin {
