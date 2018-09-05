@@ -29,5 +29,17 @@
 			"current": -1,
 			"list": []
 		}
-	}
+	},
+  "packOptions": {
+    "ignore": [{
+      "type": "file",
+      "value": "WEAPP1.PNG"
+    }, {
+      "type": "file",
+      "value": "QRCODE.jpg"
+    }, {
+      "type": "file",
+      "value": "README.md"
+    }]
+  }
 }
